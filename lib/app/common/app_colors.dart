@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  //core
+  //color codes
+  static Color primaryColor = const Color(0xff007FC5);
+  static Color secondaryColor = const Color(0xff2AAEF8);
+  static Color primaryLight = const Color(0xFF73E0FF);
 
-  static Color primaryColor = const Color(0xff0000FF);
-  static Color appBackgroundColor = const Color(0xfff3f3f3);
-  static Color white = const Color(0xffffffff);
+  static Color whiteGrey = const Color(0xFFFEF1EC);
+  static Color backgroundWhite = const Color(0xFFF9F9F9);
+  static const Color lightGrey = Color(0xFFD8DADC);
+  static const Color darkBlue = Color(0xFF007FC5);
+  static const Color butterFlyBlue = Color(0xFF2AAEF8);
 
-  static Color robinEggBlue = const Color(0xff7D7D7D);
-  static Color silverChalice = const Color(0xffAAAAAA);
-  static Color black = const Color(0xff000000);
-
-  static Color appBackGroundColor = Colors.white.withOpacity(0.95);
-  static Color gray2 = const Color(0xff4F4F4F);
-  static Color appColorYellow = const Color(0xFFF9A11F);
+  static const Color error = Color(0xFFE74C3C);
+  static const success = Color(0xFF2ECC71);
 }
