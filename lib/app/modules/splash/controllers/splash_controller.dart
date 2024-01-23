@@ -1,23 +1,28 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
+import 'package:task_tracker/app/routes/app_pages.dart';
 
 class SplashController extends GetxController {
-  //TODO: Implement SplashController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    startTimer();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void startTimer() {
+    Timer(const Duration(seconds: 3), () {
+      if (getIsLoggedIn() == true) {
+        Get.offAllNamed(Routes.LOG_IN);
+      } else {
+        Get.offAllNamed(Routes.SIGN_UP);
+      }
+    });
   }
+  bool getIsLoggedIn(){
+    // SharedPreferences preferences =Get.find();
+    // return preferences.getBool(AppConstants.isLoggedIn)??false;
+    return false;
 
-  @override
-  void onClose() {
-    super.onClose();
   }
-
-  void increment() => count.value++;
 }

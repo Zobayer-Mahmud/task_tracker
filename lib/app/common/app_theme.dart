@@ -5,17 +5,21 @@ import 'app_colors.dart';
 
 class AppTheme {
   static themeData() => ThemeData(
-        colorScheme: ColorScheme.light(
+        colorScheme: const ColorScheme.light(
           primary: AppColors.primaryColor,
           secondary: AppColors.primaryColor,
           onPrimary: Colors.white,
           onSecondary: Colors.white,
           brightness: Brightness.light,
         ),
-        fontFamily: 'Lato',
+        fontFamily: 'Manrope',
         useMaterial3: true,
-        textTheme: GoogleFonts.latoTextTheme(
+        textTheme: GoogleFonts.manropeTextTheme(
           const TextTheme(
+            headlineLarge: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.w600,
+                color: AppColors.primaryColor),
             headlineMedium: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w600,
@@ -50,60 +54,68 @@ class AppTheme {
             ),
           ),
         ),
-    buttonTheme: ButtonThemeData(
-      buttonColor: AppColors.primaryColor,
-      textTheme: ButtonTextTheme.primary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      fillColor: Colors.white,
-      filled: true,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide:  const BorderSide(
-          color: AppColors.lightGrey,
+        buttonTheme: ButtonThemeData(
+          buttonColor: AppColors.primaryColor,
+          textTheme: ButtonTextTheme.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(
-          color: AppColors.lightGrey,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primaryColor,
+            padding: const EdgeInsets.all(10),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          ),
         ),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(
-          color: AppColors.lightGrey,
+        inputDecorationTheme: InputDecorationTheme(
+          fillColor: Colors.white,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(
+              color: AppColors.lightGrey,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(
+              color: AppColors.lightGrey,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(
+              color: AppColors.lightGrey,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(
+              color: AppColors.lightGrey,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: const BorderSide(
+              color: AppColors.lightGrey,
+            ),
+          ),
+          errorStyle: const TextStyle(
+            color: Colors.red,
+          ),
+          labelStyle: const TextStyle(
+            color: Colors.black,
+          ),
+          hintStyle: TextStyle(
+            color: Colors.black.withOpacity(0.5),
+          ),
         ),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(
-          color: AppColors.lightGrey,
-        ),
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(
-          color: AppColors.lightGrey,
-        ),
-      ),
-      errorStyle: const TextStyle(
-        color: Colors.red,
-      ),
-      labelStyle: const TextStyle(
-        color: Colors.black,
-      ),
-      hintStyle: TextStyle(
-        color: Colors.black.withOpacity(0.5),
-      ),
-    ),
       );
 
   static TextStyle hyperLinkStyle() {
-    return TextStyle(
+    return const TextStyle(
       color: AppColors.primaryColor,
       fontWeight: FontWeight.bold,
       decoration: TextDecoration.underline,
