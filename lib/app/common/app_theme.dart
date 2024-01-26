@@ -23,34 +23,42 @@ class AppTheme {
             headlineMedium: TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.w600,
+              color: AppColors.blackTextColor,
             ),
             headlineSmall: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.w600,
+              color: AppColors.blackTextColor,
             ),
             titleLarge: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
+              color: AppColors.blackTextColor,
             ),
             titleMedium: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
+              color: AppColors.blackTextColor,
             ),
             titleSmall: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w500,
+              color: AppColors.blackTextColor,
             ),
             bodyLarge: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
+              color: AppColors.blackTextColor,
             ),
             bodyMedium: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
+              color: AppColors.blackTextColor,
             ),
             bodySmall: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w400,
+              color: AppColors.blackTextColor,
             ),
           ),
         ),
