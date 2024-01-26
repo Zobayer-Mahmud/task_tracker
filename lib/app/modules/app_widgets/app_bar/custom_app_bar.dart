@@ -4,11 +4,12 @@ import 'package:task_tracker/app/common/app_colors.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double? height;
   final String title;
-  const CustomAppBar({super.key, this.height, required this.title});
+  final bool automaticallyImplyLeading;
+  const CustomAppBar({super.key, this.height, required this.title,this.automaticallyImplyLeading =false});
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return AppBar(automaticallyImplyLeading: true,
       title: Text(
         title,
         style: const TextStyle(

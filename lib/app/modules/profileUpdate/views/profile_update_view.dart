@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:task_tracker/app/modules/app_widgets/app_bar/custom_app_bar.dart';
 
 import '../controllers/profile_update_controller.dart';
 
@@ -11,10 +12,7 @@ class ProfileUpdateView extends StatelessWidget{
     return GetBuilder<ProfileUpdateController>(
       builder: (controller) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text('ProfileUpdateView'),
-            centerTitle: true,
-          ),
+          appBar: CustomAppBar(title: 'Profile',),
           body: const Center(
             child: Text(
               'ProfileUpdateView is working',
