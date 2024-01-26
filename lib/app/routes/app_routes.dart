@@ -10,6 +10,7 @@ abstract class Routes {
   static const TASKS = _Paths.TASKS;
   static const PROFILE = _Paths.PROFILE;
   static const DASHBOARD = _Paths.DASHBOARD;
+  static const PROFILE_UPDATE = _Paths.PROFILE_UPDATE;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const TASKS = '/tasks';
   static const PROFILE = '/profile';
   static const DASHBOARD = '/dashboard';
+  static const PROFILE_UPDATE = '/profile-update';
 }

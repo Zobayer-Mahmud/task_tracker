@@ -8,6 +8,8 @@ import '../modules/logIn/bindings/log_in_binding.dart';
 import '../modules/logIn/views/log_in_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/profileUpdate/bindings/profile_update_binding.dart';
+import '../modules/profileUpdate/views/profile_update_view.dart';
 import '../modules/signUp/bindings/sign_up_binding.dart';
 import '../modules/signUp/views/sign_up_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.DASHBOARD,
       page: () => const DashboardView(),
       binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE_UPDATE,
+      page: () => const ProfileUpdateView(),
+      binding: ProfileUpdateBinding(),
     ),
   ];
 }
