@@ -5,9 +5,11 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-
-
+import 'package:task_tracker/app/modules/app_widgets/image/image_picker_button.dart';
 
 void showSnackBar(String text, BuildContext context, {int? durationSeconds}) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -252,7 +254,106 @@ bool isListNullOrEmpty(List<dynamic>? list) {
   }
 }
 
+Future<XFile?> showImagePicker(context) async {
+  var picker = ImagePicker();
+  XFile? pickedImageFile;
 
+  showModalBottomSheet(
+      isDismissible: true,
+      backgroundColor: Colors.white,
+      elevation: 0,
+      context: context,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      constraints:
+          BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.30),
+      builder: (context) {
+        return Center(
+          child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            elevation: 4,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text('Please Pick An Image Source'),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ImagePickerButton(
+                      iconData: Icons.add_a_photo_outlined,
+                      onTap: () async {
+                        pickedImageFile =
+                            await picker.pickImage(source: ImageSource.camera);
+                        Get.back();
+                      },
+                    ),
+                    ImagePickerButton(
+                      onTap: () async {
+                        pickedImageFile =
+                            await picker.pickImage(source: ImageSource.gallery);
+                        Get.back();
+                      },
+                      iconData: Icons.add_photo_alternate_outlined,
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      });
+
+// await showDialog(
+//     context: context,
+//     builder: (context) {
+//       return Center(
+//         child: SizedBox(
+//           height: MediaQuery.of(context).size.height * 0.2,
+//           width: MediaQuery.of(context).size.width * 0.6,
+//           child: CustomTile(
+//             carveRadius: 12,
+//             elevation: 4,
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//               children: [
+//                 const Padding(
+//                   padding: EdgeInsets.all(8.0),
+//                   child: Text('Please Pick An Image Source'),
+//                 ),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                   children: [
+//                     ImagePickerButton(
+//                       iconData: Icons.add_a_photo_outlined,
+//                       onTap: () async {
+//                         pickedImageFile = await picker.pickImage(
+//                             source: ImageSource.camera);
+//                         context.pop();
+//                       },
+//                     ),
+//                     ImagePickerButton(
+//                       onTap: () async {
+//                         pickedImageFile = await picker.pickImage(
+//                             source: ImageSource.gallery);
+//                         context.pop();
+//                       },
+//                       iconData: Icons.add_photo_alternate_outlined,
+//                     )
+//                   ],
+//                 )
+//               ],
+//             ),
+//           ),
+//         ),
+//       );
+//     });
+  return pickedImageFile;
+}
 
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];

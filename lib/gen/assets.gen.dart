@@ -25,8 +25,13 @@ class $AssetsPngGen {
   /// File path: assets/png/splash_bg.png
   AssetGenImage get splashBg => const AssetGenImage('assets/png/splash_bg.png');
 
+  /// File path: assets/png/user_place_holder.png
+  AssetGenImage get userPlaceHolder =>
+      const AssetGenImage('assets/png/user_place_holder.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [authBg, logo, placeholder, splashBg];
+  List<AssetGenImage> get values =>
+      [authBg, logo, placeholder, splashBg, userPlaceHolder];
 }
 
 class Assets {
