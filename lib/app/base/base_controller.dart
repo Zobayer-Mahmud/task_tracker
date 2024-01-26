@@ -11,8 +11,7 @@ class BaseController extends GetxController {
   final LocalStorage localStorage = Get.find();
   bool loader = false;
 
-  // TODO: TO REMOVED
-  final DioClient dioClient = Get.find();
+
 
 
 

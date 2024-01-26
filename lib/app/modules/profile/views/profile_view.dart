@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:task_tracker/app/modules/app_widgets/app_bar/custom_app_bar.dart';
 
 import '../controllers/profile_controller.dart';
 
@@ -9,10 +10,7 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ProfileView'),
-        centerTitle: true,
-      ),
+      appBar: CustomAppBar(title: "Profile"),
       body: const Center(
         child: Text(
           'ProfileView is working',

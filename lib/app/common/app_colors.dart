@@ -14,6 +14,8 @@ class AppColors {
   static const Color darkBlue = Color(0xFF007FC5);
   static const Color butterFlyBlue = Color(0xFF2AAEF8);
 
+  static const Color blackTextColor =Color(0xff141414);
+
   static const Color error = Color(0xFFE74C3C);
   static const success = Color(0xFF2ECC71);
 }

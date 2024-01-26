@@ -1,23 +1,38 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_tracker/app/common/app_colors.dart';
 
 class DashboardController extends GetxController {
-  //TODO: Implement DashboardController
+  int selectedIndex = 0;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void changeIndex(int value) {
+    selectedIndex = value;
+    update();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  BottomNavigationBarItem bottomNavigationBarItem(String title, IconData icon,
+          {String? profileImageUrl}) =>
+      BottomNavigationBarItem(
+        icon: profileImageUrl?.isNotEmpty == true
+            ? CircleAvatar(
+                backgroundColor: Colors.transparent,
+                backgroundImage: NetworkImage(profileImageUrl!),
+              )
+            : Icon(
+                icon,
+                color: const Color(0xffC6C6C6),
+              ),
+        activeIcon: profileImageUrl?.isNotEmpty == true
+            ? CircleAvatar(
+                backgroundColor: Colors.transparent,
+                backgroundImage: NetworkImage(
+                  profileImageUrl!,
+                ),
+              )
+            : Icon(
+                icon,
+                color: AppColors.primaryColor,
+              ),
+        label: title,
+      );
 }
