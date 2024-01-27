@@ -77,7 +77,7 @@ class EditTaskController extends GetxController {
       if (isUpdated) {
         showSnackBar("Updated successfully", context);
         await homeController.getAllTask();
-        // Get.back();
+        Get.back();
       } else {
         showSnackBar("Failed to update", context);
       }
