@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:task_tracker/app/common/app_colors.dart';
 import 'package:task_tracker/app/modules/home/views/home_view.dart';
+import 'package:task_tracker/app/modules/profile/controllers/profile_controller.dart';
 import 'package:task_tracker/app/modules/profile/views/profile_view.dart';
 import 'package:task_tracker/app/modules/tasks/views/tasks_view.dart';
 
@@ -30,10 +29,13 @@ class DashboardView extends StatelessWidget {
             showUnselectedLabels: true,
             currentIndex: controller.selectedIndex,
             items: [
-             controller.bottomNavigationBarItem("Home", Icons.home),
-             controller.bottomNavigationBarItem("Tasks", Icons.grid_view),
-             controller.bottomNavigationBarItem("Profile", Icons.account_circle_outlined,
-                 profileImageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
+              controller.bottomNavigationBarItem("Home", Icons.home),
+              controller.bottomNavigationBarItem("Tasks", Icons.grid_view),
+              controller.bottomNavigationBarItem(
+                "Profile",
+                Icons.account_circle_outlined,
+                profileImageUrl: Get.find<ProfileController>().userImageUrl,
+              ),
             ],
           ));
     });
