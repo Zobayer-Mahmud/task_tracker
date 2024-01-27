@@ -68,7 +68,8 @@ class SignUpView extends GetView<SignUpController> {
               const Gap(10),
               TextFormField(
                 controller: controller.nameController,
-              ),   const Gap(30),
+              ),
+              const Gap(30),
               Text("Email",
                   style: Theme.of(context)
                       .textTheme
@@ -77,7 +78,8 @@ class SignUpView extends GetView<SignUpController> {
               const Gap(10),
               TextFormField(
                 controller: controller.emailController,
-              ),   const Gap(30),
+              ),
+              const Gap(30),
               Text("Password",
                   style: Theme.of(context)
                       .textTheme
@@ -102,7 +104,7 @@ class SignUpView extends GetView<SignUpController> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async => await controller.signUp(context),
                         child: Text(
                           "Sign Up",
                           style: Theme.of(context)

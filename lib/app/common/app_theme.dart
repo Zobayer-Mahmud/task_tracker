@@ -118,7 +118,7 @@ class AppTheme {
           labelStyle: const TextStyle(
             color: Colors.black,
           ),
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             color: Color(0xffE9E9E9),
               fontSize: 16,
             fontWeight: FontWeight.w400,

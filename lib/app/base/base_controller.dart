@@ -9,6 +9,7 @@ class BaseController extends GetxController {
 
   final GlobalKey<ScaffoldState> baseScaffoldKey = GlobalKey<ScaffoldState>();
   final LocalStorage localStorage = Get.find();
+
   bool loader = false;
 
 

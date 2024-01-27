@@ -2,7 +2,7 @@ class AppConstants {
   //app const information
   static const String appName = 'Task Tracker';
 
-  static const String baseUrl = '';
+  static const String baseUrl = 'https://api-todo-list.jotno.dev';
 
 
 
