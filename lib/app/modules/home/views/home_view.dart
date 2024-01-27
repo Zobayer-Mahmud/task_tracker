@@ -200,6 +200,7 @@ class HomeView extends StatelessWidget {
                           "fafja adasdkhjad adsakhdhadh adsmahdahdsa daslfhafnaf asfkhapf fashfopsaf ",
                       taskDate: DateTime.now(),
                       isCompleted: true,
+                      onItemTap: controller.onItemTap,
                     ),
                   );
                 })
@@ -207,7 +208,7 @@ class HomeView extends StatelessWidget {
         ),
         floatingActionButton: ElevatedButton(
           onPressed: controller.goToAddTask,
-          child: Container(
+          child: SizedBox(
             width: 100,
             child: Row(
               children: [

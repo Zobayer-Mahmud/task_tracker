@@ -5,4 +5,8 @@ class HomeController extends GetxController {
   void goToAddTask() {
     Get.toNamed(Routes.ADD_TASK);
   }
+
+  void onItemTap() {
+    Get.toNamed(Routes.EDIT_TASK);
+  }
 }

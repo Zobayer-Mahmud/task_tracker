@@ -1,23 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class EditTaskController extends GetxController {
-  //TODO: Implement EditTaskController
+  bool isCompleted = false;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  TextEditingController description = TextEditingController();
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  void onDeleteTap() {}
 }
