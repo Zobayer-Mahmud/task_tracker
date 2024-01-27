@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_tracker/app/common/app_theme.dart';
 import 'package:task_tracker/app/routes/app_pages.dart';
+import 'package:task_tracker/di.dart';
 
-import 'app/di.dart';
 
 
 void main()async {

@@ -6,6 +6,7 @@ class ApiEndPoint{
   static const String userLogOut = '/user/logout';
   static const String userMe = '/user/me';
   static const String userMeAvatar = 'user/me/avatar';
+  static const String task = '/task';
 
 
 
