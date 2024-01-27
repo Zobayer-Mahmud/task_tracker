@@ -1,22 +1,37 @@
+import 'package:flutter/foundation.dart';
 import 'package:task_tracker/app/api/api_client/api_response.dart';
+import 'package:task_tracker/app/api/data/response/model/auth/sign_in_response.dart';
 import 'package:task_tracker/app/api/data/response/model/auth/sign_up_model.dart';
 import 'package:task_tracker/app/base/base_service.dart';
 import 'package:task_tracker/app/common/api_end_point/api_end_point.dart';
 
-class AuthService extends BaseApiService {
-  signUp({SignUpModel? signUpModel}) async {
+abstract class AuthServiceInterface {
+  Future<SignInResponse?> signUp({SignUpModel? signUpModel});
+}
+
+class AuthService extends BaseApiService implements AuthServiceInterface {
+  @override
+  Future<SignInResponse?> signUp({SignUpModel? signUpModel}) async {
     ApiResponse apiResponse = await dioClient.post(
         endpoint: ApiEndPoint.userRegister, data: signUpModel?.toJson());
 
-    print("api response ${apiResponse.response?.data}");
+    if (kDebugMode) {
+      print("api response ${apiResponse.response?.data}");
+    }
     try {
-      if (apiResponse.success) {
-        print(apiResponse.response?.data);
+      if (apiResponse.success && apiResponse.response?.data != null) {
+        return SignInResponse.fromJson(apiResponse.response?.data);
       } else {
-        print("parse error");
+        if (kDebugMode) {
+          print("parse error  signUp, $runtimeType");
+        }
+        return null;
       }
     } catch (e) {
-      print("$e , signUp $runtimeType");
+      if (kDebugMode) {
+        print("$e , signUp $runtimeType");
+      }
+      return null;
     }
   }
 }

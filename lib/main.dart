@@ -5,6 +5,7 @@ import 'package:task_tracker/app/routes/app_pages.dart';
 
 import 'app/di.dart';
 
+
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await ServiceLocator().initializeApp();
