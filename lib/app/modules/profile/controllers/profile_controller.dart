@@ -19,7 +19,6 @@ class ProfileController extends GetxController {
   void onInit() async {
     packageInfo = await PackageInfo.fromPlatform();
     await getUser();
-    if (user?.sId != null) await getUserImage(user?.sId);
     super.onInit();
     update();
   }
@@ -41,6 +40,7 @@ class ProfileController extends GetxController {
   User? user;
   getUser() async {
     user = await profileService.getUserByToken();
+    if (user?.sId != null) await getUserImage(user?.sId);
     update();
   }
 
