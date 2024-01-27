@@ -211,8 +211,8 @@ class HomeView extends StatelessWidget {
             width: 100,
             child: Row(
               children: [
-                Icon(Icons.add,size: 24,color: Colors.white,),
-                Gap(5),
+                const Icon(Icons.add,size: 24,color: Colors.white,),
+                const Gap(5),
                 Text(
                   "Add Task",
                   style: Theme.of(context)
