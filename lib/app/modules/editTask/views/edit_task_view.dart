@@ -35,21 +35,43 @@ class EditTaskView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Project meeting",
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                          const Gap(5),
-                          const Icon(
-                            Icons.edit,
-                            size: 15,
-                            color: AppColors.dustyGrey,
-                          ),
-                        ],
-                      ),
+                      if (controller.isEdit == true)
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextFormField(
+                                controller: controller.title,
+                              ),
+                            ),
+                            InkWell(
+                              onTap: controller.onEditPressed,
+                              child: const Icon(
+                                Icons.done,
+                                size: 20,
+                                color: AppColors.dustyGrey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      if (controller.isEdit == false)
+                        Row(
+                          children: [
+                            Text(
+                              controller.title.text,
+                              textAlign: TextAlign.start,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            const Gap(5),
+                            InkWell(
+                              onTap: controller.onEditPressed,
+                              child: const Icon(
+                                Icons.edit,
+                                size: 25,
+                                color: AppColors.dustyGrey,
+                              ),
+                            ),
+                          ],
+                        ),
                       const Gap(10),
                       Row(
                         children: [
@@ -59,32 +81,41 @@ class EditTaskView extends StatelessWidget {
                             color: AppColors.dustyGrey,
                           ),
                           const Gap(5),
-                          Text(
-                            DateFormat('dd MMM yyyy').format(DateTime.now()),
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: AppColors.dustyGrey,
-                                    ),
-                          ),
-                          const Gap(10),
-                          Container(
-                            padding: const EdgeInsets.all(3),
-                            decoration: BoxDecoration(
-                                color: AppColors.dustyGrey.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(4)),
+                          InkWell(
+                            onTap: () => controller.pickDate(context),
                             child: Text(
-                              controller.isCompleted
-                                  ? "Complete"
-                                  : "Incomplete",
+                              DateFormat('dd MMM yyyy')
+                                  .format(controller.date ?? DateTime.now()),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
                                   ?.copyWith(
-                                    color: controller.isCompleted
-                                        ? const Color(0xff61E064)
-                                        : const Color(0xffFBBC04),
-                                    fontSize: 10,
+                                    color: AppColors.dustyGrey,
                                   ),
+                            ),
+                          ),
+                          const Gap(10),
+                          InkWell(
+                            onTap: controller.onCompleteTap,
+                            child: Container(
+                              padding: const EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                  color: AppColors.dustyGrey.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: Text(
+                                controller.isCompleted
+                                    ? "Complete"
+                                    : "Incomplete",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                      color: controller.isCompleted
+                                          ? const Color(0xff61E064)
+                                          : const Color(0xffFBBC04),
+                                      fontSize: 10,
+                                    ),
+                              ),
                             ),
                           ),
                         ],
@@ -93,22 +124,25 @@ class EditTaskView extends StatelessWidget {
                   ),
                 ),
                 const Gap(5),
-                Container(
-                  decoration: BoxDecoration(
+                InkWell(
+                  onTap: controller.onCompleteTap,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: controller.isCompleted
+                            ? const Color(0xff61E064)
+                            : AppColors.dustyGrey,
+                        // color: const Color(0xff61E064),
+                        borderRadius: BorderRadius.circular(4)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 5.0, vertical: 2),
+                    child: Icon(
+                      Icons.check,
+                      // color: Colors.white,
                       color: controller.isCompleted
-                          ? const Color(0xff61E064)
-                          : AppColors.dustyGrey,
-                      // color: const Color(0xff61E064),
-                      borderRadius: BorderRadius.circular(4)),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2),
-                  child: Icon(
-                    Icons.check,
-                    // color: Colors.white,
-                    color: controller.isCompleted
-                        ? Colors.white
-                        : Colors.transparent,
-                    size: 14,
+                          ? Colors.white
+                          : Colors.transparent,
+                      size: 14,
+                    ),
                   ),
                 )
               ],
@@ -121,15 +155,45 @@ class EditTaskView extends StatelessWidget {
             ),
             Gap(10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: controller.onDeleteTap,
+                  onTap:()=> controller.onSubmit(context),
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                     decoration: BoxDecoration(
-                      border: Border.all(color: const Color(0xff808080), width: 2),
+                      border:
+                          Border.all(color: const Color(0xff808080), width: 2),
+                      borderRadius: BorderRadius.circular(28),
+                    ),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Submit Task",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(color: const Color(0xff808080)),
+                        ),
+                        const Gap(5),
+                        const Icon(
+                          Icons.check_outlined,
+                          color: Color(0xff808080),
+                          size: 16,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap:()=> controller.onDeleteTap(context),
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                    decoration: BoxDecoration(
+                      border:
+                          Border.all(color: const Color(0xff808080), width: 2),
                       borderRadius: BorderRadius.circular(28),
                     ),
                     child: Row(

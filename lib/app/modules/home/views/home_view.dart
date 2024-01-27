@@ -23,17 +23,6 @@ class HomeView extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           children: [
             const Gap(20),
-            // Text(
-            //   "Hello",
-            //   style: Theme.of(context)
-            //       .textTheme
-            //       .headlineSmall
-            //       ?.copyWith(fontWeight: FontWeight.w700),
-            // ),
-            // Text(
-            //   "What's your plan for today ?",
-            //   style: Theme.of(context).textTheme.bodyMedium,
-            // ),
             const Gap(20),
             Text(
               "Task Summary",
@@ -77,7 +66,8 @@ class HomeView extends StatelessWidget {
                     child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "${controller.completeTaskCount}",                          style: Theme.of(context)
+                          "${controller.completeTaskCount}",
+                          style: Theme.of(context)
                               .textTheme
                               .headlineSmall
                               ?.copyWith(color: Colors.white),

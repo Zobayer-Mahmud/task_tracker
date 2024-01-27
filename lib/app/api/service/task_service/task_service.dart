@@ -7,9 +7,9 @@ import 'package:task_tracker/app/common/api_end_point/api_end_point.dart';
 abstract class TaskServiceInterface {
   Future<bool> addTask(TaskModel taskModel);
   Future<AllTaskModel?> getAllTask();
-  getTaskById(String? id);
-  deleteTaskById(String? id);
-  updateTaskById({String? id, TaskModel? taskModel});
+  Future<TaskModel?> getTaskById(String? id);
+  Future<bool> deleteTaskById(String? id);
+  Future<bool> updateTaskById({String? id, TaskModel? taskModel});
   getTaskByCompleted();
   getTaskByPagination({int? limit, int? skip});
 }
@@ -34,19 +34,20 @@ class TaskService extends BaseApiService implements TaskServiceInterface {
   }
 
   @override
-  updateTaskById({String? id, TaskModel? taskModel}) async {
+  Future<bool> updateTaskById({String? id, TaskModel? taskModel}) async {
     ApiResponse apiResponse = await dioClient.put(
         endpoint: "${ApiEndPoint.task}/$id", data: taskModel?.toJson());
     try {
       if (apiResponse.success && apiResponse.response?.data != null) {
         print("${apiResponse.response?.data} $runtimeType addTask");
+        return true;
         // return apiResponse.response?.data['image'];
       } else {
-        return null;
+        return false;
       }
     } catch (e) {
       print("Api error $e $runtimeType");
-      return null;
+      return false;
     }
   }
 
@@ -101,13 +102,13 @@ class TaskService extends BaseApiService implements TaskServiceInterface {
   }
 
   @override
-  getTaskById(String? id) async {
+  Future<TaskModel?> getTaskById(String? id) async {
     ApiResponse apiResponse =
         await dioClient.get(endpoint: '${ApiEndPoint.task}/$id');
     try {
       if (apiResponse.success && apiResponse.response?.data != null) {
-        print("${apiResponse.response?.data} $runtimeType addTask");
-        // return apiResponse.response?.data['image'];
+        print("${apiResponse.response?.data} $runtimeType getTaskById");
+        return TaskModel.fromJson(apiResponse.response?.data);
       } else {
         return null;
       }
@@ -118,19 +119,20 @@ class TaskService extends BaseApiService implements TaskServiceInterface {
   }
 
   @override
-  deleteTaskById(String? id) async {
+  Future<bool> deleteTaskById(String? id) async {
     ApiResponse apiResponse =
         await dioClient.delete(endpoint: '${ApiEndPoint.task}/$id');
     try {
       if (apiResponse.success && apiResponse.response?.data != null) {
         print("${apiResponse.response?.data} $runtimeType addTask");
+        return true;
         // return apiResponse.response?.data['image'];
       } else {
-        return null;
+        return false;
       }
     } catch (e) {
       print("Api error $e $runtimeType");
-      return null;
+      return false;
     }
   }
 }
