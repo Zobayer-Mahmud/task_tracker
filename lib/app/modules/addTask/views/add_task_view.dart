@@ -25,11 +25,17 @@ class AddTaskView extends StatelessWidget {
             const Gap(10),
             Text("Date", style: Theme.of(context).textTheme.bodyMedium),
             const Gap(10),
-            TextFormField(
-              controller: controller.date,
-              decoration: const InputDecoration(
-                  hintText: "dd/mm/yyyy",
-                  suffixIcon: Icon(Icons.calendar_month)),
+            GestureDetector(
+              onTap:()=> controller.pickDate(context),
+              child: AbsorbPointer(
+                absorbing: true,
+                child: TextFormField(
+                  controller: controller.date,
+                  decoration: const InputDecoration(
+                      hintText: "dd/mm/yyyy",
+                      suffixIcon: Icon(Icons.calendar_month)),
+                ),
+              ),
             ),
             const Gap(10),
             Text("Description", style: Theme.of(context).textTheme.bodyMedium),

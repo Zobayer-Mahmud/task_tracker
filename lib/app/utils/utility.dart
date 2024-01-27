@@ -209,7 +209,7 @@ Future<String?> showMaterialDatePicker(BuildContext context,
       lastDate: DateTime(2101));
   if (picked != null) {
     String divider = midDivider ?? "/";
-    return "${picked.year}$divider${picked.month}$divider${picked.day}";
+    return "${picked.day}$divider${picked.month}$divider${picked.year}";
   }
   return null;
 }
@@ -354,6 +354,8 @@ Future<XFile?> showImagePicker(context) async {
 //     });
   return pickedImageFile;
 }
+
+
 
 MaterialColor createMaterialColor(Color color) {
   List strengths = <double>[.05];
