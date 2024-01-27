@@ -22,13 +22,13 @@ class EditTaskController extends GetxController {
     super.onInit();
   }
 
-  void onDeleteTap(BuildContext context) async{
-bool result = await taskService.deleteTaskById(id);
-if(result){
-  showSnackBar("Deleted successfully", context);
-  await homeController.getAllTask();
-  Get.back();
-}
+  void onDeleteTap(BuildContext context) async {
+    bool result = await taskService.deleteTaskById(id);
+    if (result) {
+      showSnackBar("Deleted successfully", context);
+      await homeController.getAllTask();
+      Get.back();
+    }
   }
 
   getTaskById(String? id) async {
@@ -67,8 +67,11 @@ if(result){
     if (title.text.isEmpty == true || date == null) {
       showSnackBar('Title and Date are required', context);
     } else {
-      updateTaskModel();
-      TaskModel temp =TaskModel(completed: isCompleted,description: "ab",);
+      // updateTaskModel();
+      TaskModel temp = TaskModel(
+        completed: isCompleted,
+        description: description.text,
+      );
       bool isUpdated =
           await taskService.updateTaskById(id: id, taskModel: temp);
       if (isUpdated) {
