@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:task_tracker/app/common/app_colors.dart';
+import 'package:task_tracker/app/modules/app_widgets/app_bar/custom_app_bar.dart';
 import 'package:task_tracker/app/modules/app_widgets/task_item/task_item_widget.dart';
 import 'package:task_tracker/gen/assets.gen.dart';
 
@@ -16,21 +17,25 @@ class HomeView extends StatelessWidget {
     return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
         backgroundColor: const Color(0xffECECEC).withOpacity(0.2),
+        appBar: const CustomAppBar(
+          title: "Hello!",
+          subTitle: "What's your plan for today ?",
+        ),
         body: ListView(
           padding: const EdgeInsets.all(15),
           children: [
             const Gap(20),
-            Text(
-              "Hello",
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall
-                  ?.copyWith(fontWeight: FontWeight.w700),
-            ),
-            Text(
-              "What's your plan for today ?",
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
+            // Text(
+            //   "Hello",
+            //   style: Theme.of(context)
+            //       .textTheme
+            //       .headlineSmall
+            //       ?.copyWith(fontWeight: FontWeight.w700),
+            // ),
+            // Text(
+            //   "What's your plan for today ?",
+            //   style: Theme.of(context).textTheme.bodyMedium,
+            // ),
             const Gap(20),
             Text(
               "Task Summary",
@@ -212,7 +217,11 @@ class HomeView extends StatelessWidget {
             width: 100,
             child: Row(
               children: [
-                const Icon(Icons.add,size: 24,color: Colors.white,),
+                const Icon(
+                  Icons.add,
+                  size: 24,
+                  color: Colors.white,
+                ),
                 const Gap(5),
                 Text(
                   "Add Task",
