@@ -19,88 +19,100 @@ class HomeView extends StatelessWidget {
           title: "Hello!",
           subTitle: "What's your plan for today ?",
         ),
-        body: ListView(
-          padding: const EdgeInsets.all(15),
-          children: [
-            const Gap(20),
-            const Gap(20),
-            Text(
-              "Task Summary",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const Gap(10),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 100,
-                    clipBehavior: Clip.none,
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                          image: AssetImage(Assets.png.incomplete.path)),
-                    ),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "${controller.inCompleteTaskCount}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
-                              ?.copyWith(color: Colors.white),
-                        )),
-                  ),
-                ),
-                const Gap(10),
-                Expanded(
-                  child: Container(
-                    height: 100,
-                    clipBehavior: Clip.none,
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                          image: AssetImage(Assets.png.complete.path)),
-                    ),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "${controller.completeTaskCount}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
-                              ?.copyWith(color: Colors.white),
-                        )),
-                  ),
-                ),
-              ],
-            ),
-            const Gap(10),
-            Text(
-              "Tasks for the Day",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const Gap(15),
-            if (controller.allTaskModel?.data?.isNotEmpty == true)
-              ListView.builder(
-                  primary: false,
-                  itemCount: controller.allTaskModel?.data?.length,
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, index) {
-                    TaskModel task = controller.allTaskModel!.data![index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: TaskItemWidget(
-                        taskTitle: task.title,
-                        taskDetails: task.description,
-                        taskDate: task.dueDate,
-                        isCompleted: task.completed ?? false,
-                        onItemTap: () => controller.onItemTap(task.sId),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            await controller.getAllTask();
+          },
+          child: ListView(
+            padding: const EdgeInsets.all(15),
+            children: [
+              const Gap(20),
+              const Gap(20),
+              Text(
+                "Task Summary",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const Gap(10),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 100,
+                      clipBehavior: Clip.none,
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image: AssetImage(Assets.png.incomplete.path)),
                       ),
-                    );
-                  })
-          ],
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "${controller.inCompleteTaskCount}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(color: Colors.white),
+                          )),
+                    ),
+                  ),
+                  const Gap(10),
+                  Expanded(
+                    child: Container(
+                      height: 100,
+                      clipBehavior: Clip.none,
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image: AssetImage(Assets.png.complete.path)),
+                      ),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "${controller.completeTaskCount}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(color: Colors.white),
+                          )),
+                    ),
+                  ),
+                ],
+              ),
+              const Gap(10),
+              Text(
+                "Tasks for the Day",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const Gap(15),
+              if (controller.allTaskModel?.data?.isNotEmpty == true)
+                ListView.builder(
+                    primary: false,
+                    itemCount: controller.allTaskModel?.data?.length,
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, index) {
+                      TaskModel task = controller.allTaskModel!.data![index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: TaskItemWidget(
+                          taskTitle: task.title,
+                          taskDetails: task.description,
+                          taskDate: task.dueDate,
+                          isCompleted: task.completed ?? false,
+                          onItemTap: () => controller.onItemTap(task.sId),
+                        ),
+                      );
+                    }),
+              if (controller.allTaskModel?.data?.length == 0)
+                Center(
+                  child: Text(
+                    "No task added yet",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                )
+            ],
+          ),
         ),
         floatingActionButton: ElevatedButton(
           onPressed: controller.goToAddTask,

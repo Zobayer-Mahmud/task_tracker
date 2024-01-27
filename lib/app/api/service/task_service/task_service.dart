@@ -108,7 +108,7 @@ class TaskService extends BaseApiService implements TaskServiceInterface {
     try {
       if (apiResponse.success && apiResponse.response?.data != null) {
         print("${apiResponse.response?.data} $runtimeType getTaskById");
-        return TaskModel.fromJson(apiResponse.response?.data);
+        return TaskModel.fromJson(apiResponse.response?.data['data']);
       } else {
         return null;
       }

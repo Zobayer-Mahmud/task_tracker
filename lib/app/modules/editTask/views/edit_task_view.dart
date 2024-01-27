@@ -158,7 +158,7 @@ class EditTaskView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap:()=> controller.onSubmit(context),
+                  onTap:()=> controller.onUpdate(context),
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -170,7 +170,7 @@ class EditTaskView extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          "Submit Task",
+                          "Update Task",
                           style: Theme.of(context)
                               .textTheme
                               .titleSmall

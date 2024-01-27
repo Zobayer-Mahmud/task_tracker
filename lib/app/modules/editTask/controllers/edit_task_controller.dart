@@ -63,17 +63,18 @@ if(result){
     }
   }
 
-  void onSubmit(BuildContext context) async {
+  void onUpdate(BuildContext context) async {
     if (title.text.isEmpty == true || date == null) {
       showSnackBar('Title and Date are required', context);
     } else {
       updateTaskModel();
+      TaskModel temp =TaskModel(completed: isCompleted,description: "ab",);
       bool isUpdated =
-          await taskService.updateTaskById(id: id, taskModel: task);
+          await taskService.updateTaskById(id: id, taskModel: temp);
       if (isUpdated) {
         showSnackBar("Updated successfully", context);
         await homeController.getAllTask();
-        Get.back();
+        // Get.back();
       } else {
         showSnackBar("Failed to update", context);
       }
