@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_tracker/app/api/api_client/dio_client.dart';
 import 'package:task_tracker/app/api/data/response/model/auth/sign_in_response.dart';
 import 'package:task_tracker/app/api/data/response/model/auth/sign_up_model.dart';
@@ -13,13 +12,7 @@ class SignUpController extends GetxController {
   final AuthService authService = Get.find();
   DioClient dioClient = Get.find();
   LocalStorage localStorage = Get.find();
-  late SharedPreferences sharedPreferences;
   GlobalKey<FormState> signUpKey = GlobalKey();
-  @override
-  void onInit() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-    super.onInit();
-  }
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();

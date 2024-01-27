@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:task_tracker/app/common/app_colors.dart';
+import 'package:task_tracker/app/utils/extentions/extentions.dart';
 import 'package:task_tracker/gen/assets.gen.dart';
 
 import '../controllers/log_in_controller.dart';
@@ -50,70 +51,90 @@ class LogInView extends GetView<LogInController> {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Sign In",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineLarge
-                    ?.copyWith(color: const Color(0xff8C88CD)),
-              ),
-              const Gap(30),
-              Text("Email",
+          child: Form(
+            key: controller.loginKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "Sign In",
                   style: Theme.of(context)
                       .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: Colors.black)),
-              const Gap(10),
-              TextFormField(
-                controller: controller.emailController,
-              ),
-              const Gap(30),
-              Text("Password",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: Colors.black)),
-              const Gap(10),
-              TextFormField(
-                controller: controller.passwordController,
-              ),
-              const Gap(30),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
-                          "Sign in",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(color: Colors.white),
-                        )),
-                  ),
-                ],
-              ),
-              const Gap(10),
-              Center(
-                child: RichText(
-                  text: TextSpan(
-                    text: "Don't have an account?",
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    children: [
-                      TextSpan(
-                          text: " Sign In ",
-                          style: const TextStyle(color: AppColors.primaryColor),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = controller.routeToSignIn),
-                    ],
+                      .headlineLarge
+                      ?.copyWith(color: const Color(0xff8C88CD)),
+                ),
+                const Gap(30),
+                Text("Email",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: Colors.black)),
+                const Gap(10),
+                TextFormField(
+                  controller: controller.emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (v) {
+                    if (v?.isNotEmpty == true) {
+                      if (v!.isValidEmail == true) {
+                        return null;
+                      } else {
+                        return "please, Enter a valid email";
+                      }
+                    } else {
+                      return "Email is required";
+                    }
+                  },
+                ),
+                const Gap(30),
+                Text("Password",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: Colors.black)),
+                const Gap(10),
+                TextFormField(
+                  controller: controller.passwordController,
+                  validator: (v) {
+                    if (v?.isEmpty == true) return "Password is required";
+                    return null;
+                  },
+                ),
+                const Gap(30),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                          onPressed: () =>controller.logIn(context),
+                          child: Text(
+                            "Sign in",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(color: Colors.white),
+                          )),
+                    ),
+                  ],
+                ),
+                const Gap(10),
+                Center(
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Don't have an account?",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      children: [
+                        TextSpan(
+                            text: " Sign In ",
+                            style:
+                                const TextStyle(color: AppColors.primaryColor),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = controller.routeToSignIn),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],

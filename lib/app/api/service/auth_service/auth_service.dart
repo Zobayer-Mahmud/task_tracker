@@ -7,6 +7,7 @@ import 'package:task_tracker/app/common/api_end_point/api_end_point.dart';
 
 abstract class AuthServiceInterface {
   Future<SignInResponse?> signUp({SignUpModel? signUpModel});
+  Future<SignInResponse?> logIn({String? email, String? password});
 }
 
 class AuthService extends BaseApiService implements AuthServiceInterface {
@@ -14,6 +15,32 @@ class AuthService extends BaseApiService implements AuthServiceInterface {
   Future<SignInResponse?> signUp({SignUpModel? signUpModel}) async {
     ApiResponse apiResponse = await dioClient.post(
         endpoint: ApiEndPoint.userRegister, data: signUpModel?.toJson());
+
+    if (kDebugMode) {
+      print("api response ${apiResponse.response?.data}");
+    }
+    try {
+      if (apiResponse.success && apiResponse.response?.data != null) {
+        return SignInResponse.fromJson(apiResponse.response?.data);
+      } else {
+        if (kDebugMode) {
+          print("parse error  signUp, $runtimeType");
+        }
+        return null;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print("$e , signUp $runtimeType");
+      }
+      return null;
+    }
+  }
+
+  @override
+  Future<SignInResponse?> logIn({String? email, String? password}) async {
+    ApiResponse apiResponse = await dioClient.post(
+        endpoint: ApiEndPoint.userRegister,
+        data: {"email": email, "password": password});
 
     if (kDebugMode) {
       print("api response ${apiResponse.response?.data}");
