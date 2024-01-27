@@ -9,6 +9,7 @@ class AppConstants {
 
   //const Names
   static const String token = 'TOKEN';
+  static const String userData = 'user';
   static const String isLoggedIn = 'isLoggedIn';
 
 

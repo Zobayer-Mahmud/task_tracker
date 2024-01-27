@@ -6,6 +6,7 @@ import 'package:task_tracker/app/api/data/response/model/auth/sign_up_model.dart
 import 'package:task_tracker/app/api/service/auth_service/auth_service.dart';
 import 'package:task_tracker/app/common/app_constants.dart';
 import 'package:task_tracker/app/local_storage/local_storage.dart';
+import 'package:task_tracker/app/routes/app_pages.dart';
 import 'package:task_tracker/app/utils/utility.dart';
 
 class SignUpController extends GetxController {
@@ -30,7 +31,9 @@ class SignUpController extends GetxController {
       if (signInResponse != null) {
         if (signInResponse.token != null) {
           localStorage.saveData(AppConstants.token, signInResponse.token!);
+          if(signInResponse.user!=null)localStorage.saveData(AppConstants.userData, signInResponse.user!);
           dioClient.updateAuthToken(token: signInResponse.token);
+          routeToDashBoard();
         }
         showSnackBar("Sign up successfully!", context);
       }
@@ -43,4 +46,17 @@ class SignUpController extends GetxController {
         password: passwordController.text,
         age: int.tryParse(ageController.text),
       );
+
+  void routeToSignIn() {
+  Get.toNamed(Routes.LOG_IN);
+  }
+
+  void routeToDashBoard() {
+    Get.offAllNamed(Routes.DASHBOARD);
+  }
+
+  void floatingButton() {
+    print("localStorage ${localStorage.getData(AppConstants.token)}");
+    Get.toNamed(Routes.DASHBOARD);
+  }
 }

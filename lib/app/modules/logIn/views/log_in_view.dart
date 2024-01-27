@@ -124,7 +124,7 @@ class LogInView extends GetView<LogInController> {
                       style: Theme.of(context).textTheme.bodyLarge,
                       children: [
                         TextSpan(
-                            text: " Sign In ",
+                            text: " Sign Up ",
                             style:
                                 const TextStyle(color: AppColors.primaryColor),
                             recognizer: TapGestureRecognizer()

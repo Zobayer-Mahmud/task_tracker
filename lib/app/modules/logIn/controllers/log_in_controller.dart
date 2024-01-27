@@ -28,13 +28,21 @@ class LogInController extends GetxController {
       if (signInResponse != null) {
         if (signInResponse.token != null) {
           localStorage.saveData(AppConstants.token, signInResponse.token!);
+          if (signInResponse.user != null) {
+            localStorage.saveData(AppConstants.userData, signInResponse.user!);
+          }
           dioClient.updateAuthToken(token: signInResponse.token);
+          routeToDashBoard();
         }
         showSnackBar("Sign-in successfully!", context);
       } else {
         showSnackBar("Email and password doesn't match!", context);
       }
     }
+  }
+
+  void routeToDashBoard() {
+    Get.offAllNamed(Routes.DASHBOARD);
   }
 
   void routeToSignIn() {

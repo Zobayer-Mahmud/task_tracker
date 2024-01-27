@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:task_tracker/app/common/app_colors.dart';
 import 'package:task_tracker/app/utils/extentions/extentions.dart';
 import 'package:task_tracker/gen/assets.gen.dart';
 import '../controllers/sign_up_controller.dart';
@@ -10,7 +12,7 @@ class SignUpView extends GetView<SignUpController> {
   const SignUpView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(floatingActionButton: FloatingActionButton(onPressed: controller.floatingButton,),
         body: ListView(
       padding: EdgeInsets.zero,
       children: [
@@ -62,7 +64,7 @@ class SignUpView extends GetView<SignUpController> {
                       .headlineLarge
                       ?.copyWith(color: const Color(0xff8C88CD)),
                 ),
-                const Gap(30),
+                const Gap(15),
                 Text("Name *",
                     style: Theme.of(context)
                         .textTheme
@@ -79,7 +81,7 @@ class SignUpView extends GetView<SignUpController> {
                     return null;
                   },
                 ),
-                const Gap(30),
+                const Gap(15),
                 Text("Email *",
                     style: Theme.of(context)
                         .textTheme
@@ -101,7 +103,7 @@ class SignUpView extends GetView<SignUpController> {
                     }
                   },
                 ),
-                const Gap(30),
+                const Gap(15),
                 Text("Age",
                     style: Theme.of(context)
                         .textTheme
@@ -113,7 +115,7 @@ class SignUpView extends GetView<SignUpController> {
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   keyboardType: TextInputType.number,
                 ),
-                const Gap(30),
+                const Gap(15),
                 Text("Password *",
                     style: Theme.of(context)
                         .textTheme
@@ -131,7 +133,7 @@ class SignUpView extends GetView<SignUpController> {
                     return null;
                   },
                 ),
-                const Gap(30),
+                const Gap(15),
                 Text("Retype Password",
                     style: Theme.of(context)
                         .textTheme
@@ -149,7 +151,7 @@ class SignUpView extends GetView<SignUpController> {
                     return null;
                   },
                 ),
-                const Gap(30),
+                const Gap(15),
                 Row(
                   children: [
                     Expanded(
@@ -167,6 +169,22 @@ class SignUpView extends GetView<SignUpController> {
                   ],
                 ),
                 const Gap(10),
+                Center(
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Already have an account?",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      children: [
+                        TextSpan(
+                            text: " Sign In ",
+                            style:
+                            const TextStyle(color: AppColors.primaryColor),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = controller.routeToSignIn),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

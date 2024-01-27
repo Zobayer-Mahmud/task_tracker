@@ -9,6 +9,7 @@ class SplashView extends GetView<SplashController> {
   const SplashView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    controller.startTimer();
     return Scaffold(
       body: Container(
         height: double.infinity,
