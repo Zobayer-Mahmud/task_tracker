@@ -15,6 +15,7 @@ class AppColors {
   static const Color butterFlyBlue = Color(0xFF2AAEF8);
 
   static const Color blackTextColor =Color(0xff141414);
+  static const Color dustyGrey =Color(0xff979797);
 
   static const Color error = Color(0xFFE74C3C);
   static const success = Color(0xFF2ECC71);

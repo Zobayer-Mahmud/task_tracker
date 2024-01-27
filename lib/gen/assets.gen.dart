@@ -15,6 +15,13 @@ class $AssetsPngGen {
   /// File path: assets/png/auth_bg.png
   AssetGenImage get authBg => const AssetGenImage('assets/png/auth_bg.png');
 
+  /// File path: assets/png/complete.png
+  AssetGenImage get complete => const AssetGenImage('assets/png/complete.png');
+
+  /// File path: assets/png/incomplete.png
+  AssetGenImage get incomplete =>
+      const AssetGenImage('assets/png/incomplete.png');
+
   /// File path: assets/png/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/png/logo.png');
 
@@ -30,8 +37,15 @@ class $AssetsPngGen {
       const AssetGenImage('assets/png/user_place_holder.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [authBg, logo, placeholder, splashBg, userPlaceHolder];
+  List<AssetGenImage> get values => [
+        authBg,
+        complete,
+        incomplete,
+        logo,
+        placeholder,
+        splashBg,
+        userPlaceHolder
+      ];
 }
 
 class Assets {

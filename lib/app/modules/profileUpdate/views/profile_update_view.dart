@@ -71,27 +71,30 @@ class ProfileUpdateView extends StatelessWidget {
                       Positioned(
                           left: MediaQuery.of(context).size.width * 0.5 + 10,
                           bottom: -8,
-                          child: Container(
-                            clipBehavior: Clip.none,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.transparent,
-                              border: Border.all(
-                                color: Colors.white,
-                                width: 2,
-                              ),
-                            ),
+                          child: GestureDetector(
+                            onTap:()async=>await controller.pickProfileImage(context),
                             child: Container(
                               clipBehavior: Clip.none,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.transparent,
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 2,
+                                ),
                               ),
-                              padding: const EdgeInsets.all(5),
-                              child: const Icon(
-                                Icons.photo_camera_outlined,
-                                color: Colors.black,
-                                size: 30,
+                              child: Container(
+                                clipBehavior: Clip.none,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.transparent,
+                                ),
+                                padding: const EdgeInsets.all(5),
+                                child: const Icon(
+                                  Icons.photo_camera_outlined,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                               ),
                             ),
                           ))
