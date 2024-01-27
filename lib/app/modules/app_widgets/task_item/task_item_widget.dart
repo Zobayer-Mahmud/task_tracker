@@ -9,10 +9,13 @@ class TaskItemWidget extends StatelessWidget {
       this.taskTitle,
       this.taskDetails,
       this.taskDate,
-      this.isCompleted = false});
+      this.isCompleted = false,
+      this.onCompleteTap,
+      this.onItemTap});
   final String? taskTitle, taskDetails;
   final DateTime? taskDate;
   final bool isCompleted;
+  final VoidCallback? onCompleteTap, onItemTap;
 
   @override
   Widget build(BuildContext context) {

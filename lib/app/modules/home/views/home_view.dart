@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:task_tracker/app/common/app_colors.dart';
+import 'package:task_tracker/app/modules/app_widgets/task_item/task_item_widget.dart';
 import 'package:task_tracker/gen/assets.gen.dart';
 
 import '../controllers/home_controller.dart';
@@ -186,6 +187,22 @@ class HomeView extends StatelessWidget {
                 ],
               ),
             ),
+            ListView.builder(
+                primary: false,
+                itemCount: 20,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: TaskItemWidget(
+                      taskTitle: "hi",
+                      taskDetails:
+                          "fafja adasdkhjad adsakhdhadh adsmahdahdsa daslfhafnaf asfkhapf fashfopsaf ",
+                      taskDate: DateTime.now(),
+                      isCompleted: true,
+                    ),
+                  );
+                })
           ],
         ),
       );
