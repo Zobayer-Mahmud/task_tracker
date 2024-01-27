@@ -72,8 +72,8 @@ class SignUpView extends GetView<SignUpController> {
                         ?.copyWith(color: Colors.black)),
                 const Gap(10),
                 TextFormField(
-                  keyboardType: TextInputType.name,
                   controller: controller.nameController,
+                  keyboardType: TextInputType.name,
                   validator: (v) {
                     if (v?.isEmpty == true) {
                       return "Name is required";

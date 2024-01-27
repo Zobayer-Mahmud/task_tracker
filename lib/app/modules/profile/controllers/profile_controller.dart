@@ -48,4 +48,15 @@ class ProfileController extends GetxController {
     userImageUrl = await profileService.getUserImage(id: id);
     update();
   }
+
+  onUserDeleteTap(BuildContext context) async {
+    bool result = await AppDialog.showConfirmationDialog(context,
+        title: "Are you sure you want to delete?");
+    if (result == true) {
+      await profileService.deleteUser();
+      await localStorage.clearStorage();
+      Get.toNamed(Routes.LOG_IN);
+      showSnackBar('Logged out successfully!', context);
+    }
+  }
 }

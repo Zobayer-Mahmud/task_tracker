@@ -80,10 +80,31 @@ class ProfileView extends StatelessWidget {
                       color: Color(0xffF6736B),
                     ),
                     GestureDetector(
-                      onTap: () => controller.onLogOutTap(context),
+                      onTap: ()async =>await controller.onLogOutTap(context),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Text("Log out",
+                            style: Theme.of(context).textTheme.titleSmall),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Gap(10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.delete,
+                      size: 24,
+                      color: Color(0xffF6736B),
+                    ),
+                    GestureDetector(
+                      onTap: () async=>await controller.onUserDeleteTap(context),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text("Delete User",
                             style: Theme.of(context).textTheme.titleSmall),
                       ),
                     ),

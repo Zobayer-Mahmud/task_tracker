@@ -65,5 +65,6 @@ class AuthService extends BaseApiService implements AuthServiceInterface {
 
    logOut()async{
     await dioClient.post(endpoint: ApiEndPoint.userLogOut);
+
   }
 }
