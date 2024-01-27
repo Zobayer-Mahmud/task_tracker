@@ -39,7 +39,7 @@ class AuthService extends BaseApiService implements AuthServiceInterface {
   @override
   Future<SignInResponse?> logIn({String? email, String? password}) async {
     ApiResponse apiResponse = await dioClient.post(
-        endpoint: ApiEndPoint.userRegister,
+        endpoint: ApiEndPoint.userLogin,
         data: {"email": email, "password": password});
 
     if (kDebugMode) {
@@ -60,5 +60,10 @@ class AuthService extends BaseApiService implements AuthServiceInterface {
       }
       return null;
     }
+  }
+
+
+   logOut()async{
+    await dioClient.post(endpoint: ApiEndPoint.userLogOut);
   }
 }
