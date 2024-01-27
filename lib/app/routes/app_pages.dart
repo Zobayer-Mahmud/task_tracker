@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
 
+import '../modules/addTask/bindings/add_task_binding.dart';
+import '../modules/addTask/views/add_task_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/editTask/bindings/edit_task_binding.dart';
+import '../modules/editTask/views/edit_task_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/logIn/bindings/log_in_binding.dart';
@@ -64,6 +68,16 @@ class AppPages {
       name: _Paths.PROFILE_UPDATE,
       page: () => const ProfileUpdateView(),
       binding: ProfileUpdateBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_TASK,
+      page: () => const AddTaskView(),
+      binding: AddTaskBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_TASK,
+      page: () => const EditTaskView(),
+      binding: EditTaskBinding(),
     ),
   ];
 }

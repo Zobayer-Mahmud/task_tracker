@@ -204,7 +204,9 @@ class HomeView extends StatelessWidget {
                   );
                 })
           ],
+
         ),
+        floatingActionButton: FloatingActionButton(onPressed: controller.goToAddTask,),
       );
     });
   }

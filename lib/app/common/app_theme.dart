@@ -119,7 +119,9 @@ class AppTheme {
             color: Colors.black,
           ),
           hintStyle: TextStyle(
-            color: Colors.black.withOpacity(0.5),
+            color: Color(0xffE9E9E9),
+              fontSize: 16,
+            fontWeight: FontWeight.w400,
           ),
         ),
       );
