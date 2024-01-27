@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:task_tracker/app/common/app_colors.dart';
+import 'package:task_tracker/app/api/data/response/model/task/task_model.dart';
 import 'package:task_tracker/app/modules/app_widgets/app_bar/custom_app_bar.dart';
 import 'package:task_tracker/app/modules/app_widgets/task_item/task_item_widget.dart';
 import 'package:task_tracker/gen/assets.gen.dart';
@@ -57,7 +55,7 @@ class HomeView extends StatelessWidget {
                     child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '12',
+                          "${controller.inCompleteTaskCount}",
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall
@@ -79,8 +77,7 @@ class HomeView extends StatelessWidget {
                     child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '12',
-                          style: Theme.of(context)
+                          "${controller.completeTaskCount}",                          style: Theme.of(context)
                               .textTheme
                               .headlineSmall
                               ?.copyWith(color: Colors.white),
@@ -95,120 +92,24 @@ class HomeView extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const Gap(15),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.18,
-              width: double.infinity,
-              padding: const EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(14)),
-              child: Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Product Meeting",
-                              textAlign: TextAlign.start,
-                              style: Theme.of(context).textTheme.titleLarge,
-                            ),
-                            const Gap(10),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.watch_later_outlined,
-                                  size: 12,
-                                  color: AppColors.dustyGrey,
-                                ),
-                                const Gap(5),
-                                Text(
-                                  DateFormat('dd MMM yyyy')
-                                      .format(DateTime.now()),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.copyWith(
-                                        color: AppColors.dustyGrey,
-                                      ),
-                                ),
-                                const Gap(10),
-                                Container(
-                                  padding: const EdgeInsets.all(3),
-                                  decoration: BoxDecoration(
-                                      color:
-                                          AppColors.dustyGrey.withOpacity(0.3),
-                                      borderRadius: BorderRadius.circular(4)),
-                                  child: Text(
-                                    "Incomplete",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                          //for Incompleted
-                                          color: const Color(0xffFBBC04),
-
-                                          //for completed
-                                          // color: Color(0xff61E064),
-                                          fontSize: 10,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+            if (controller.allTaskModel?.data?.isNotEmpty == true)
+              ListView.builder(
+                  primary: false,
+                  itemCount: controller.allTaskModel?.data?.length,
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, index) {
+                    TaskModel task = controller.allTaskModel!.data![index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: TaskItemWidget(
+                        taskTitle: task.title,
+                        taskDetails: task.description,
+                        taskDate: task.dueDate,
+                        isCompleted: task.completed ?? false,
+                        onItemTap: () => controller.onItemTap(task.sId),
                       ),
-                      const Gap(5),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: const Color(0xff979797),
-                            // color: const Color(0xff61E064),
-                            borderRadius: BorderRadius.circular(4)),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 5.0, vertical: 2),
-                        child: const Icon(
-                          Icons.check,
-                          // color: Colors.white,
-                          color: Colors.transparent,
-                          size: 14,
-                        ),
-                      )
-                    ],
-                  ),
-                  const Gap(10),
-                  Text(
-                    '''Explore the power of our latest app feature - "Product Meeting." Effortlessly schedule and man
-                          ''',
-                    maxLines: 2,
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  )
-                ],
-              ),
-            ),
-            ListView.builder(
-                primary: false,
-                itemCount: 20,
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: TaskItemWidget(
-                      taskTitle: "hi",
-                      taskDetails:
-                          "fafja adasdkhjad adsakhdhadh adsmahdahdsa daslfhafnaf asfkhapf fashfopsaf ",
-                      taskDate: DateTime.now(),
-                      isCompleted: true,
-                      onItemTap: controller.onItemTap,
-                    ),
-                  );
-                })
+                    );
+                  })
           ],
         ),
         floatingActionButton: ElevatedButton(

@@ -51,7 +51,7 @@ class AddTaskView extends StatelessWidget {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(12.0),
           child: ElevatedButton(
-            onPressed: controller.onAddCreate,
+            onPressed:()=> controller.onAddCreate(context),
             child: Text(
               "Create Task",
               style: Theme.of(context)

@@ -1,11 +1,12 @@
 import 'package:task_tracker/app/api/api_client/api_response.dart';
+import 'package:task_tracker/app/api/data/response/model/task/all_task_model.dart';
 import 'package:task_tracker/app/api/data/response/model/task/task_model.dart';
 import 'package:task_tracker/app/base/base_service.dart';
 import 'package:task_tracker/app/common/api_end_point/api_end_point.dart';
 
 abstract class TaskServiceInterface {
-  addTask(TaskModel taskModel);
-  getAllTask();
+  Future<bool> addTask(TaskModel taskModel);
+  Future<AllTaskModel?> getAllTask();
   getTaskById(String? id);
   deleteTaskById(String? id);
   updateTaskById({String? id, TaskModel? taskModel});
@@ -15,19 +16,20 @@ abstract class TaskServiceInterface {
 
 class TaskService extends BaseApiService implements TaskServiceInterface {
   @override
-  addTask(TaskModel taskModel) async {
+  Future<bool> addTask(TaskModel taskModel) async {
     ApiResponse apiResponse = await dioClient.post(
         endpoint: ApiEndPoint.task, data: taskModel.toJson());
     try {
       if (apiResponse.success && apiResponse.response?.data != null) {
         print("${apiResponse.response?.data} $runtimeType addTask");
+        return true;
         // return apiResponse.response?.data['image'];
       } else {
-        return null;
+        return false;
       }
     } catch (e) {
       print("Api error $e $runtimeType");
-      return null;
+      return false;
     }
   }
 
@@ -49,12 +51,11 @@ class TaskService extends BaseApiService implements TaskServiceInterface {
   }
 
   @override
-  getAllTask() async {
+  Future<AllTaskModel?> getAllTask() async {
     ApiResponse apiResponse = await dioClient.get(endpoint: ApiEndPoint.task);
     try {
       if (apiResponse.success && apiResponse.response?.data != null) {
-        print("${apiResponse.response?.data} $runtimeType addTask");
-        // return apiResponse.response?.data['image'];
+        return AllTaskModel.fromJson(apiResponse.response?.data);
       } else {
         return null;
       }

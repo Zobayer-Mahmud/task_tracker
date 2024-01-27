@@ -1,31 +1,55 @@
 import 'package:intl/intl.dart';
 
 class TaskModel {
+  bool? completed;
+  String? sId;
   String? title;
   String? description;
   DateTime? dueDate;
-  bool? completed;
+  String? owner;
+  String? createdAt;
+  String? updatedAt;
+  int? iV;
 
-  TaskModel({this.title, this.description, this.dueDate, this.completed});
+  TaskModel(
+      {this.completed,
+      this.sId,
+      this.title,
+      this.description,
+      this.dueDate,
+      this.owner,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   TaskModel.fromJson(Map<String, dynamic> json) {
+    completed = json['completed'];
+    sId = json['_id'];
     title = json['title'];
     description = json['description'];
-    if (dueDate != null) {
+    if (json['dueDate'] != null) {
       dueDate = DateTime.tryParse(json['dueDate']);
     }
-    completed = json['completed'];
+    owner = json['owner'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    iV = json['__v'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['title'] = title;
-    data['description'] = description;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['completed'] = this.completed;
+    data['_id'] = this.sId;
+    data['title'] = this.title;
+    data['description'] = this.description;
     if (dueDate != null) {
       //2024-01-21
       data['dueDate'] = DateFormat('yyyy-MM-dd').format(dueDate!);
     }
-    data['completed'] = completed;
+    data['owner'] = this.owner;
+    data['createdAt'] = this.createdAt;
+    data['updatedAt'] = this.updatedAt;
+    data['__v'] = this.iV;
     return data;
   }
 }

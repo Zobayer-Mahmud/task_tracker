@@ -101,14 +101,17 @@ class TaskItemWidget extends StatelessWidget {
               ],
             ),
             const Gap(10),
-            Text(
-              taskDetails ??
-                  '''Explore the power of our latest app feature - "Product Meeting." Effortlessly schedule and man
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                taskDetails ??
+                    '''Explore the power of our latest app feature - "Product Meeting." Effortlessly schedule and man
                             ''',
-              maxLines: 2,
-              textAlign: TextAlign.start,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodyMedium,
+                maxLines: 2,
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
             )
           ],
         ),
