@@ -75,13 +75,19 @@ class ProfileView extends StatelessWidget{
                         size: 24,
                         color: Color(0xffF6736B),
                       ),
-                      const Gap(10),
-                      Text("Log out",
-                          style: Theme.of(context).textTheme.titleSmall),
+
+                      GestureDetector(
+                        onTap: ()=>controller.onLogOutTap(context),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Text("Log out",
+                              style: Theme.of(context).textTheme.titleSmall),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                const Gap(28),
+                const Gap(10),
                 if (controller.packageInfo != null)
                   Center(
                     child: Text(
