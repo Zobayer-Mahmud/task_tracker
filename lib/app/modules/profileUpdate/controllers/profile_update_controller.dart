@@ -32,7 +32,7 @@ class ProfileUpdateController extends GetxController {
       User? updatedModel = User(
           name: nameController.text,
           age: int.tryParse(ageController.text),
-          email: emailController.text);
+          email: emailController.text.toLowerCase().trim());
       await profileService.updateUser(user: updatedModel);
       if (profileImage != null) {
         await profileService.uploadImage(image: File(profileImage!.path));

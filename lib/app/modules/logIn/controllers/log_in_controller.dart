@@ -24,7 +24,8 @@ class LogInController extends GetxController {
   logIn(BuildContext context) async {
     if (loginKey.currentState?.validate() == true) {
       SignInResponse? signInResponse = await authService.logIn(
-          email: emailController.text, password: passwordController.text);
+          email: emailController.text.toLowerCase().trim(),
+          password: passwordController.text.trim());
       if (signInResponse != null) {
         if (signInResponse.token != null) {
           localStorage.saveData(AppConstants.token, signInResponse.token!);

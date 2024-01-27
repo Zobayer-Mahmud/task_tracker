@@ -42,8 +42,8 @@ class SignUpController extends GetxController {
 
   SignUpModel updateSignUpModel() => SignUpModel(
         name: nameController.text,
-        email: emailController.text,
-        password: passwordController.text,
+        email: emailController.text.toLowerCase().trim(),
+        password: passwordController.text.trim(),
         age: int.tryParse(ageController.text),
       );
 
