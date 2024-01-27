@@ -204,9 +204,26 @@ class HomeView extends StatelessWidget {
                   );
                 })
           ],
-
         ),
-        floatingActionButton: FloatingActionButton(onPressed: controller.goToAddTask,),
+        floatingActionButton: ElevatedButton(
+          onPressed: controller.goToAddTask,
+          child: Container(
+            width: 100,
+            child: Row(
+              children: [
+                Icon(Icons.add,size: 24,color: Colors.white,),
+                Gap(5),
+                Text(
+                  "Add Task",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: Colors.white),
+                )
+              ],
+            ),
+          ),
+        ),
       );
     });
   }
