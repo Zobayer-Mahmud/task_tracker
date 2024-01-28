@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:task_tracker/app/api/data/response/model/task/task_model.dart';
 import 'package:task_tracker/app/api/service/task_service/task_service.dart';
 import 'package:task_tracker/app/modules/home/controllers/home_controller.dart';
+import 'package:task_tracker/app/modules/tasks/controllers/tasks_controller.dart';
 import 'package:task_tracker/app/utils/utility.dart';
 
 class EditTaskController extends GetxController {
-  HomeController homeController = Get.find();
+  HomeController homeController = Get.find();  TasksController tasksController = Get.find();
+
   TaskService taskService = Get.find();
   bool isCompleted = false;
   bool isEdit = false;
@@ -27,6 +29,7 @@ class EditTaskController extends GetxController {
     if (result) {
       showSnackBar("Deleted successfully", context);
       await homeController.getAllTask();
+      await tasksController.getAllTask();
       Get.back();
     }
   }
@@ -77,6 +80,7 @@ class EditTaskController extends GetxController {
       if (isUpdated) {
         showSnackBar("Updated successfully", context);
         await homeController.getAllTask();
+        await tasksController.getAllTask();
         Get.back();
       } else {
         showSnackBar("Failed to update", context);

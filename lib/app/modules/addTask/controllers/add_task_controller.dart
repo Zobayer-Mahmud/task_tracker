@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 import 'package:task_tracker/app/api/data/response/model/task/task_model.dart';
 import 'package:task_tracker/app/api/service/task_service/task_service.dart';
 import 'package:task_tracker/app/modules/home/controllers/home_controller.dart';
+import 'package:task_tracker/app/modules/tasks/controllers/tasks_controller.dart';
 import 'package:task_tracker/app/utils/utility.dart';
 
 class AddTaskController extends GetxController {
   TaskService taskService = Get.find();
   HomeController homeController = Get.find();
+  TasksController tasksController = Get.find();
   DateTime? pickedDate;
   TextEditingController title = TextEditingController();
   TextEditingController date = TextEditingController();
@@ -23,6 +25,7 @@ class AddTaskController extends GetxController {
     if (result == true) {
       showSnackBar("Task added successfully!", context);
       await homeController.getAllTask();
+      await tasksController.getAllTask();
       Get.back();
     }else{
       showSnackBar("Failed to add task!", context);

@@ -18,7 +18,12 @@ class LogInView extends GetView<LogInController> {
       children: [
         Stack(
           children: [
-            Image.asset(Assets.png.authBg.path),
+            Image.asset(
+              Assets.png.authBg.path,
+              width: double.infinity,
+              height: 180,
+              fit: BoxFit.cover,
+            ),
             Positioned(
                 left: 10,
                 top: 20,
@@ -105,7 +110,7 @@ class LogInView extends GetView<LogInController> {
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                          onPressed: () =>controller.logIn(context),
+                          onPressed: () => controller.logIn(context),
                           child: Text(
                             "Sign in",
                             style: Theme.of(context)

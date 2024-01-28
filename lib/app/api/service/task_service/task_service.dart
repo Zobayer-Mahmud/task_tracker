@@ -52,8 +52,9 @@ class TaskService extends BaseApiService implements TaskServiceInterface {
   }
 
   @override
-  Future<AllTaskModel?> getAllTask() async {
-    ApiResponse apiResponse = await dioClient.get(endpoint: ApiEndPoint.task);
+  Future<AllTaskModel?> getAllTask({bool? completed}) async {
+    ApiResponse apiResponse = await dioClient
+        .get(endpoint: ApiEndPoint.task, queryParams: {"completed": completed});
     try {
       if (apiResponse.success && apiResponse.response?.data != null) {
         return AllTaskModel.fromJson(apiResponse.response?.data);
