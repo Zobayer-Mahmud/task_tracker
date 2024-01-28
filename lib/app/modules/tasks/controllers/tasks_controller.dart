@@ -13,6 +13,15 @@ class TasksController extends GetxController {
     super.onInit();
   }
 
+  getByDate(DateTime? dateTime) {
+    tasksList.clear();
+    allTaskModel?.data?.forEach((element) {
+      if (element.dueDate == dateTime) {
+        tasksList.add(element);
+      }
+    });
+  }
+
   AllTaskModel? allTaskModel;
   List<TaskModel> tasksList = [];
   getAllTask({bool? completed}) async {
