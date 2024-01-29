@@ -23,7 +23,17 @@ class TaskModel {
       this.iV});
 
   TaskModel.fromJson(Map<String, dynamic> json) {
-    completed = json['completed'];
+    if (json['completed'] != null) {
+      if (json['completed'] is String) {
+        if (json['completed'] == '1') {
+          completed = true;
+        } else {
+          completed = false;
+        }
+      }else{
+        completed = json['completed'];
+      }
+    }
     sId = json['_id'];
     title = json['title'];
     description = json['description'];
@@ -37,19 +47,19 @@ class TaskModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['completed'] = this.completed;
-    data['_id'] = this.sId;
-    data['title'] = this.title;
-    data['description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['completed'] = completed;
+    data['_id'] = sId;
+    data['title'] = title;
+    data['description'] = description;
     if (dueDate != null) {
       //2024-01-21
       data['dueDate'] = DateFormat('yyyy-MM-dd').format(dueDate!);
     }
-    data['owner'] = this.owner;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['__v'] = this.iV;
+    data['owner'] = owner;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['__v'] = iV;
     return data;
   }
 }

@@ -4,7 +4,9 @@ class AppConstants {
 
   static const String baseUrl = 'https://api-todo-list.jotno.dev';
 
+//local Sqflite table
 
+  static const String task = "task";
 
 
   //const Names
